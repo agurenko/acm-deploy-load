@@ -67,6 +67,11 @@ policies:
     manifests:
       # Set auto sizing of control plane nodes
       - path: reference-crs/optional/tuning/control-plane-system-reserved.yaml
+        patches:
+        - spec:
+            kubeletConfig:
+              systemReserved:
+                memory: "{{ telco_core_control_plane_system_reserved_memory }}"
 
       # Multus networks
       - path: reference-crs/required/networking/Network.yaml
@@ -94,6 +99,8 @@ policies:
         patches:
         - metadata:
             name: worker-profile-1
+            annotations:
+              kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"systemReserved":{"memory":"{{ telco_core_performance_profile_worker_1_system_reserved_memory }}"}}'
           spec:
             cpu:
               {%- raw %}
@@ -113,6 +120,8 @@ policies:
         patches:
         - metadata:
             name: worker-profile-2
+            annotations:
+              kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"systemReserved":{"memory":"{{ telco_core_performance_profile_worker_2_system_reserved_memory }}"}}'
           spec:
             cpu:
               {%- raw %}
@@ -132,6 +141,8 @@ policies:
         patches:
         - metadata:
             name: worker-profile-3
+            annotations:
+              kubeletconfig.experimental: '{"allowedUnsafeSysctls":["net.ipv6.conf.all.accept_ra"],"systemReserved":{"memory":"{{ telco_core_performance_profile_worker_3_system_reserved_memory }}"}}'
           spec:
             cpu:
               {%- raw %}

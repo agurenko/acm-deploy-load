@@ -1,5 +1,11 @@
 ---
 # talm-deploy tasks - Install TALM on a cluster
+- name: Validate TALM settings from variables file
+  when:
+    - setup_talm_operator | bool
+    - setup_talm_repo | bool
+  ansible.builtin.fail:
+    msg: "setup_talm_operator and setup_talm_repo should not be set to true at the same time"
 
 - name: Deploy TALM via Operator Subscription
   when: setup_talm_operator

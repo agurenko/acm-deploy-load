@@ -57,11 +57,11 @@ setup_rhacm_observability: false
 # Deploy Topology Aware Lifecycle Manager (TALM)
 # Only have one set to true or none (setup_talm_operator or setup_talm_repo)
 # Deploy TALM via Operator Subscription
-setup_talm_operator: false
+setup_talm_operator: true
 # redhat-operator-index = disconnected setup, redhat-operators = connected setup
 talm_operator_source: redhat-operators
 # Deploy TALM via Repo
-setup_talm_repo: true
+setup_talm_repo: false
 talm_repo: https://github.com/openshift-kni/cluster-group-upgrades-operator.git
 talm_repo_branch: release-4.20
 talm_image: quay.io/openshift-kni/cluster-group-upgrades-operator:4.20.0
